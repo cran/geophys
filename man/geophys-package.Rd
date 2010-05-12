@@ -5,13 +5,13 @@
 \title{Geophysics
 }
 \description{
-Geophysics, Continuum Mechanics, Mogi Models, Mohr's Circles
+Geophysics, Continuum Mechanics, Mogi Models, Mohr's Circles, Okada Model
 }
 \details{
 \tabular{ll}{
 Package: \tab geophys\cr
 Type: \tab Package\cr
-Version: \tab 1.1-0\cr
+Version: \tab 1.2-0\cr
 Date: \tab 2010-05-12\cr
 License: \tab GPL\cr
 LazyLoad: \tab yes\cr
