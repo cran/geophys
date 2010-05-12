@@ -46,9 +46,10 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 
 \dontrun{
-
+#####   no stress tensor provided => no mohr's circle
 stress()
 
+#########################  run program with a stress tensor
 Stensor = matrix(c(
 15, 0, 0,
 0, 10, 0,
@@ -56,6 +57,17 @@ Stensor = matrix(c(
 
 
 stress(Stensor=Stensor)
+
+P1 = c(0.2, 1, 1, 0)
+P2 = c(1, 0.1, 1, 0)
+P3 = c(1, 1, 0.4, 0)
+
+  S = stressSETUP(P1, P2, P3, xscale=30   )
+
+stress(PPs = S$PPs, Rview =S$Rview, xscale = S$xscale, Stensor=Stensor )
+
+
+
 
 }
 

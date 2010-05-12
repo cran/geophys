@@ -21,6 +21,9 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
         
       }
 
+
+    
+    
     ampvec<-function(a){return(sqrt(sum(a*a))) }
 
     TauNumber = 0
@@ -29,25 +32,57 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
     colt = 'black'
     cex = 1
 
-    devMOHR  = 3
-    devCUBE  = 2
-    devAUX   = 4 
+    devCUBE  =  NULL
+    devMOHR = NULL
+    devAUX    =  NULL
+    
+    opendevs = dev.list()
+    if(is.null(opendevs)  )
+      {
+        dev.new()
+        devCUBE  = dev.cur()
+        opendevs = dev.list()
+      }
+    else
+      {
+
+        devCUBE  = opendevs[1]
+
+      }
+
+    if(length(opendevs)>1)
+      {
+        devMOHR   =  dev.next()
+        dev.set(devCUBE)   
+      }
+    else
+      {
+        dev.new()
+        devMOHR   = dev.cur()
+        opendevs = dev.list()
+      }
+
+    
+    if(length(opendevs)>2)
+      {      
+        devAUX    =    devMOHR+1
+      }
     
     
-  typefaces  =  c("serif","sans serif", "script",
-    "gothic english", "serif symbol" , "sans serif symbol")
+    typefaces  =  c("serif","sans serif", "script",
+      "gothic english", "serif symbol" , "sans serif symbol")
 
     fontindeces = c("plain", "italic", "bold", "bold italic", "cyrillic")
 
     typeface = typefaces[1]
     fontindex = fontindeces[1]
 
-      vfont = c(typeface, fontindex)
+    vfont = c(typeface, fontindex)
 
-pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
-        "tan3", "lightseagreen", "deeppink", "cyan3", "bisque3",
-        "magenta1", "lightsalmon3", "darkcyan", "darkslateblue",
-        "chocolate4", "goldenrod4", "mediumseagreen", "DeepSkyBlue1", "DarkSeaGreen" )
+    pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
+      "tan3", "lightseagreen", "deeppink", "cyan3", "bisque3",
+      "magenta1", "lightsalmon3", "darkcyan", "darkslateblue",
+      "chocolate4", "goldenrod4", "mediumseagreen", "DeepSkyBlue1", "DarkSeaGreen" )
 
     if(is.vector(Rview))
       {
@@ -85,22 +120,25 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
             
             ES = eigen(Stensor)
           }
+
+
         
         MAXSTRESS = TRUE
         MAXSHEAR = TRUE
 
-        if(length( dev.list())<2)
+        if(is.null(devMOHR) )
           {
-            devMOHR = dev.new()
-            DoMohr(Stensor)
+            dev.new()
+            devMOHR = dev.cur()
+           ##  DoMohr(Stensor)
             dev.set(dev.prev())
 
           }
         else
           {            
-            devMOHR = dev.set(dev.next() )
-            DoMohr(Stensor)
-            dev.set(dev.prev())
+            devMOHR = dev.set(devMOHR )
+         ##    DoMohr(Stensor)
+            dev.set(devCUBE)
           }
 
         
@@ -112,15 +150,16 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
       }
 
-    
+   
+
     BOX <-matrix(c(0,0,0,0,
-            0, 1, 0,0,
-            0, 1, 1,0,
-            0, 0, 1,0,
-            1,0,0,0,
-            1, 1, 0,0,
-            1, 1, 1,0,
-            1, 0, 1,0), ncol=4, byrow=TRUE)
+                   0, 1, 0,0,
+                   0, 1, 1,0,
+                   0, 0, 1,0,
+                   1,0,0,0,
+                   1, 1, 0,0,
+                   1, 1, 1,0,
+                   1, 0, 1,0), ncol=4, byrow=TRUE)
 
     BOX = xscale*BOX
     
@@ -131,23 +170,21 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
       0,0,0,0,
       0, 0, 1,0), ncol=4, byrow=TRUE)
 
-   AX = 1.5*xscale*AX
+    AX = 1.5*xscale*AX
 
     
 
     Rax =  AX %*% Rview
 
-     Rbox =   BOX %*% Rview
+    Rbox =   BOX %*% Rview
 
     Rp = PPs  %*% Rview
- 
+    
     headlen =xscale* .3/6
     len =xscale* .7/6
     basethick =xscale* 0.05/2
     headlip =xscale* .02/2
     aglyph = Z3Darrow(len = len , basethick =basethick , headlen =headlen , headlip=headlip )
-    
-    
     
     axcol = 'black'
     boxcol = 'blue'
@@ -162,162 +199,195 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
     
     colabs = rep(1, length=length(labs))
-    pchlabs = rep(0,length(labs))
+    pchlabs = rep(NA,length(labs))
     
     NLABS = length(labs)
     NOLAB = NLABS +1000  ## some large number
 
 
    
+    gvars = list(
+      Stensor=Stensor,
+      ES=ES,
+      xscale=xscale,
+      rim = rim,
+      Rax=Rax,
+      Rbox=Rbox,
+      axcol=axcol ,
+      boxcol=boxcol,
+      Rp=Rp,
+      planecol=planecol,
+      PPs=PPs,
+      Rview=Rview,
+      aglyph=aglyph,
+      SHOWNORM=SHOWNORM,
+      cex=cex,
+      vfont = vfont,
+      colt=colt,
+      MAXSHEAR=MAXSHEAR,
+      MAXSTRESS=MAXSTRESS,
+      TauNumber=TauNumber,
+      devMOHR  = devMOHR, 
+      devCUBE  = devCUBE,
+      devAUX   = devAUX 
+      
+      
+      )
 
-
-
-    replot<-function()
+    plotnormvec<-function(B, PPs, xscale, Rview, aglyph)
       {
-        ##   print(paste("check xscale=",xscale))
+        L = list(x1 = PPs[3, 1], y1 = PPs[3, 2], z1 = PPs[3, 3], 
+          x2 = PPs[3, 1] + xscale * B[1]/5, y2 = PPs[3, 2] + xscale * 
+          B[2]/5, z2 = PPs[3, 3] + xscale * B[3]/5)
+          BOXarrows3D(L$x1, L$y1, L$z1, L$x2, L$y2, L$z2, aglyph = aglyph, 
+            Rview = Rview, col = "green")
+      }
+    
+    fresheng<-function(g)
+      {
+        NN = NORMvec(g$PPs, g$xscale, g$Rview,aglyph=g$aglyph, add=g$SHOWNORM)
+        sigNORMmax = NN[1]^2*g$ES$values[1] + NN[2]^2 * g$ES$values[2]  +NN[3]^2 *  g$ES$values[3]
+         tauSHEARmax  = NN[1]^2*NN[2]^2*(g$ES$values[1]-g$ES$values[2])^2 +
+              NN[2]^2 *NN[3]^2 * (g$ES$values[2]-g$ES$values[3])^2  +
+                NN[3]^2 *NN[1]^2 *  (g$ES$values[1] -g$ES$values[3])^2
+
+            tauSHEARmax = sqrt(tauSHEARmax)
+        g$NN = NN
+        g$sigNORMmax = sigNORMmax
+        g$tauSHEARmax = tauSHEARmax
         
-        pstart(xscale=xscale)
-        PLOTbox(Rax, Rbox, axcol=axcol , boxcol=boxcol )
-        PLOTplane(Rp, planecol=planecol )
-        NN = NORMvec(PPs, xscale, Rview,aglyph=aglyph, add=SHOWNORM)
 
-        if(!is.null(Stensor))
+        return(g)
+      }
+
+    replot<-function(g)
+      {
+        ##
+      ####  print(paste("check xscale=",g$xscale))
+
+      ####  print(g$devCUBE)
+        dev.set(g$devCUBE)
+      ##  print("plot 1")
+        pstart(xscale=g$xscale)
+        PLOTbox(g$Rax, g$Rbox, axcol=g$axcol , boxcol=g$boxcol )
+        PLOTplane(g$Rp, planecol=g$planecol )
+        NN = g$NN
+        if(g$SHOWNORM)  plotnormvec(NN, g$PPs, g$xscale, g$Rview, g$aglyph)
+
+        if(!is.null(g$Stensor))
           {
-            mohrleg(ES)
-            
-
+            ###########  this plots the legend in the upper right
+            mohrleg(g$ES)
           }
 
 
         u = par("usr")
         posTOPLEFT = u[4]-0.1*(u[4]-u[3])
-        shigh =  strheight("TEST" , units = "user", cex = cex, vfont = vfont)
+        shigh =  strheight("TEST" , units = "user", cex = g$cex, vfont = g$vfont)
         
-        if(MAXSTRESS)
+        if(g$MAXSTRESS)
           {
-            sigNORMmax = NN[1]^2*ES$values[1] + NN[2]^2 * ES$values[2]  +NN[3]^2 *  ES$values[3]  
-            
            
-            s1 = substitute(sigma[max] == sig, list(sig=sigNORMmax)  )
+            s1 = substitute(sigma[max] == sig, list(sig= g$sigNORMmax)  )
+            text(u[1], posTOPLEFT , labels=s1, vfont=g$vfont, cex=g$cex, col=g$colt, xpd=TRUE, pos=4)
             
-            
-            text(u[1], posTOPLEFT , labels=s1, vfont=vfont, cex=cex, col=colt, xpd=TRUE, pos=4)
-        
-      }
-             if(MAXSHEAR)
+          }
+        if(g$MAXSHEAR)
           {
-            tauSHEARmax  = NN[1]^2*NN[2]^2*(ES$values[1]-ES$values[2])^2 +
-              NN[2]^2 *NN[3]^2 * (ES$values[2]-ES$values[3])^2  +
-                NN[3]^2 *NN[1]^2 *  (ES$values[1] -ES$values[3])^2
-
-            tauSHEARmax = sqrt(tauSHEARmax)
             
-            tlab = substitute(tau[max] == sig, list(sig=tauSHEARmax)  )
+            tlab = substitute(tau[max] == sig, list(sig=g$tauSHEARmax)  )
             
             text(u[1], posTOPLEFT-1.5*shigh , labels=tlab,
-                 vfont=vfont, cex=cex, col=colt, xpd=TRUE, pos=4)
+                 vfont=g$vfont, cex=g$cex, col=g$colt, xpd=TRUE, pos=4)
             
           }
 
-        if(SHOWNORM){
+        if(g$SHOWNORM){
           u = par("usr")
           pos1 = (u[3]+u[4])/2
           s1 = substitute(n[1] == sig, list(sig=NN[1])  )
-          shigh =  strheight(s1, units = "user", cex = cex, vfont = vfont)
+          shigh =  strheight(s1, units = "user", cex = g$cex, vfont = g$vfont)
 
           text(u[1], pos1, labels=s1,
-               vfont=vfont, cex=cex, col=colt, xpd=TRUE, pos=4)
+               vfont=g$vfont, cex=g$cex, col=g$colt, xpd=TRUE, pos=4)
 
           s2 = substitute(n[2] == sig, list(sig=NN[2])  )
           text(u[1], pos1-2*shigh, labels=s2,
-               vfont=vfont, cex=cex, col=colt, xpd=TRUE, pos=4)
+               vfont=g$vfont, cex=g$cex, col=g$colt, xpd=TRUE, pos=4)
 
           s3 = substitute(n[3] == sig, list(sig=NN[3])  )
           text(u[1], pos1-4*shigh, labels=s3,
-               vfont=vfont, cex=cex, col=colt, xpd=TRUE, pos=4)
-
-
+               vfont=g$vfont, cex=g$cex, col=g$colt, xpd=TRUE, pos=4)
           
-            
         }
-        
-
-       if(MAXSTRESS & MAXSHEAR)
+      
+        if(g$MAXSTRESS & g$MAXSHEAR)
           {
-            devMOHR = dev.set(dev.next() )
-             DoMohr(Stensor, axis=c(1,4) )
-            points(sigNORMmax, tauSHEARmax, pch=23, col='red', bg='yellow' )
+
+             ##print("plot 2")
+            dev.set(  g$devMOHR )
+            DoMohr(g$Stensor, axis=c(1,4) )
+            points(g$sigNORMmax, g$tauSHEARmax, pch=23, col='red', bg='yellow' )
 
 
-            if(TauNumber>0)
+            if(g$TauNumber>0)
               {
-            for(ktau in 1:TauNumber)
-              {
-                temptau = TauOnLine[[ktau]]$tau
-                points(sigNORMmax, temptau, pch=21, col='blue', bg='gold', cex=.8 )
+                for(ktau in 1:g$TauNumber)
+                  {
+                    temptau = g$TauOnLine[[ktau]]$tau
+                    points(g$sigNORMmax, temptau, pch=21, col='blue', bg='gold', cex=.8 )
 
+                  }
               }
-          }
 
-            
-            
-            dev.set(dev.prev())
+            dev.set(g$devCUBE)
             
           }
-       
-
-        
-        
       }
 
     
-   
+ 
 
-
-    replot()
-    devCUBE = dev.cur()
-   
+    zloc  = list(x=NULL, y=NULL)
+    sloc = zloc
+##   print("start")
+    gvars$SHOWNORM = FALSE
+    gvars = fresheng(gvars)
+ ##      print("after")
+      gvars$SHOWNORM = TRUE
+    replot(gvars )
+  
+    gvars$devCUBE = dev.cur()
     
-    NN = NORMvec(PPs, xscale, Rview,aglyph=aglyph, add=FALSE)
-    if(!is.null(Stensor))
-      {
-        sigNORMmax = NN[1]^2*ES$values[1] + NN[2]^2 * ES$values[2]  +NN[3]^2 *  ES$values[3]  
-        
-                
-        tauSHEARmax  = NN[1]^2*NN[2]^2*(ES$values[1]-ES$values[2])^2 +
-          NN[2]^2 *NN[3]^2 * (ES$values[2]-ES$values[3])^2  +
-            NN[3]^2 *NN[1]^2 *  (ES$values[1] -ES$values[3])^2
-        
-                tauSHEARmax = sqrt(tauSHEARmax)
-        
-        
-        
-
-      }
     
     u = par("usr")
-        posTOPLEFT = u[4]-0.1*(u[4]-u[3])
+    posTOPLEFT = u[4]-0.1*(u[4]-u[3])
     charheight  =  strheight("TEST" , units = "user", cex = cex, vfont = vfont)
     
     
     buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
 
-    iloc = locator(1, type='p')
-    zloc = iloc
+    zloc  = list(x=NULL, y=NULL)
     
-    K =  whichbutt(zloc , buttons)
-    sloc = zloc
-    Nclick = length(iloc$x)
-  ##  m1 =  which.min( (iloc$x-Rp[,1])^2 +  (iloc$y-Rp[,2])^2)
-
     while(TRUE)
       {
+        iloc = locator(1,type='p')
+        K =  whichbutt(iloc , buttons)
+##### print(iloc)
+        zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
+        Nclick = length(iloc$x)
 
-
+        if(Nclick<1)
+          {
+            return(NULL)
+            
+          }
+        else
+          {
         ####################################  change the plane if the point is near a node
-        dis =  sqrt( (iloc$x-Rp[,1])^2 +  (iloc$y-Rp[,2])^2  )
+        dis =  sqrt( (iloc$x-gvars$Rp[,1])^2 +  (iloc$y-gvars$Rp[,2])^2  )
 
-        if(all(dis>rim))
+        if(all(dis>gvars$rim))
           {
             m1 = 0
 
@@ -357,35 +427,17 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
             
             Lp = locator(1)
             
-            PPs = REplane(m1, Lp, PPs, Rbox, Rview, xscale)
-            Rp = PPs  %*% Rview
-            replot()
-
-            
-             NN = NORMvec(PPs, xscale, Rview,aglyph=aglyph, add=FALSE)
-
-
-            if(!is.null(Stensor))
-              {
-                sigNORMmax = NN[1]^2*ES$values[1] + NN[2]^2 * ES$values[2]  +NN[3]^2 *  ES$values[3]  
-            
-                
-                tauSHEARmax  = NN[1]^2*NN[2]^2*(ES$values[1]-ES$values[2])^2 +
-                  NN[2]^2 *NN[3]^2 * (ES$values[2]-ES$values[3])^2  +
-                    NN[3]^2 *NN[1]^2 *  (ES$values[1] -ES$values[3])^2
-                
-                tauSHEARmax = sqrt(tauSHEARmax)
-                
-                
-
-
-              }
-
-            
+            gvars$PPs = REplane(m1, Lp, gvars$PPs, gvars$Rbox, gvars$Rview, gvars$xscale)
+            gvars$Rp = gvars$PPs  %*% gvars$Rview
+            gvars = fresheng(gvars)
+            replot(gvars )
 
               buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
             m1 = 0
-
+            next
+            
+          }
+          
             
           }
          ########################################################### 
@@ -393,6 +445,13 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
         ###########################################################  exit
         if(K[Nclick] == match("DONE", labs, nomatch = NOLAB))
           {
+
+            buttons = rowBUTTONS(labs, col=rep(grey(.85), times=length(labs) ), pch=pchlabs)
+            title(main="RETURN to MAIN")
+            
+                zloc  = list(x=NULL, y=NULL)
+    
+            return()
             break;
           }
 ########################################################### 
@@ -400,6 +459,14 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 ########################################################### 
         if(K[Nclick] == match("QUIT", labs, nomatch = NOLAB))
           {
+
+             buttons = rowBUTTONS(labs, col=rep(grey(.85), times=length(labs) ), pch=pchlabs)
+             title(main="RETURN to MAIN")
+
+             
+                zloc  = list(x=NULL, y=NULL)
+    
+            return()
             break;
           }
 ########################################################### 
@@ -410,24 +477,33 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
         if(K[Nclick] == match("Refresh", labs, nomatch = NOLAB))
           {
            ##  PPs = MOVEpt(PPs, Rbox, Rview, xscale ) 
-           print("pressed Refresh")
+         ##  print("pressed Refresh")
            TauNumber = 0
            TauOnLine = list()
-           replot()
-            ##  NN = NORMvec(PPs, xscale, Rview)
+
+           replot(gvars )
+
            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+          ## print("pressed refresh")
            m1 = 0
+               zloc  = list(x=NULL, y=NULL)
+           next
           }
+
+
+        
         if(K[Nclick] == match("Replot", labs, nomatch = NOLAB))
           {
            ##  PPs = MOVEpt(PPs, Rbox, Rview, xscale )
-              replot()
+              replot(gvars)
             ##  NN = NORMvec(PPs, xscale, Rview)
            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
            m1 = 0
       
-           print("pressed Move")
-           
+         ##  print("pressed replot")
+                zloc  = list(x=NULL, y=NULL)
+      
+           next
           }
 ########################################################### 
 ########################################################### 
@@ -436,7 +512,7 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
         if(K[Nclick] == match("LINE", labs, nomatch = NOLAB))
           {
 
-            if(is.null(ES))
+            if(is.null(gvars$ES))
               {
 
                 cat("Cannot estimate Shear Stress without a Stress Tensor input", sep="\n")
@@ -456,22 +532,23 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
                 kn = (npoints-1)
                 
-                P2 = list(x=zloc$x[kn] , y=zloc$y[kn])
-                P1 = list(x=zloc$x[kn-1] , y=zloc$y[kn-1])
+                gvars$P2 = list(x=zloc$x[kn] , y=zloc$y[kn])
+                gvars$P1 = list(x=zloc$x[kn-1] , y=zloc$y[kn-1])
 
                TauNumber = TauNumber+1
 
                 
                ## L = list(x=zloc$x[1:(npoints-1)] , y=zloc$y[1:(npoints-1)])
-                NewTauOUT  =   tauline(Rp, P1, P2, Rview, ES, NN)
+             
+                NewTauOUT  =   tauline(gvars$Rp, gvars$P1, gvars$P2, gvars$Rview, gvars$ES, gvars$NN)
 
                 NewTau=NewTauOUT$tau
               ##   replot()
                 TauOnLine[[TauNumber]] = NewTauOUT
                 acol = pdcols[TauNumber]
                 
-                arrows(P1$x, P1$y, P2$x, P2$y, length = 0.1, col=acol)
-                text(P1$x, P1$y, labels=TauNumber, pos=2, cex=.8, col=acol)
+                arrows(gvars$P1$x, gvars$P1$y, gvars$P2$x, gvars$P2$y, length = 0.1, col=acol)
+                text(gvars$P1$x, gvars$P1$y, labels=TauNumber, pos=2, cex=.8, col=acol)
                 
                ##  buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
                ##  m1 = 0
@@ -491,8 +568,11 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
                 
               }
+           
           }
-            
+
+             zloc  = list(x=NULL, y=NULL)
+            next
            ##  PPs = MOVEpt(PPs, Rbox, Rview, xscale ) 
            ### print("pressed LINE")
            
@@ -503,12 +583,14 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
        if(K[Nclick] == match("NORM", labs, nomatch = NOLAB))
           {
            ##  PPs = MOVEpt(PPs, Rbox, Rview, xscale ) 
-            SHOWNORM = !SHOWNORM
-            replot()
+            gvars$SHOWNORM = !gvars$SHOWNORM
             
+             replot(gvars )
+
              buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
            m1 = 0
-
+             zloc  = list(x=NULL, y=NULL)
+            next
            
           }
 ########################################################### 
@@ -522,18 +604,19 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
 ####  calculate the max normal stress
 
-                   MAXSTRESS = !MAXSTRESS
+            gvars$MAXSTRESS = !gvars$MAXSTRESS
 
-                   if(is.null(Stensor)) {
-                     print("No Stress Tensor")
-                     MAXSTRESS =FALSE }
-                   
-            replot()
+            if(is.null(gvars$Stensor)) {
+              print("No Stress Tensor")
+              gvars$MAXSTRESS =FALSE }
             
-             buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
-           m1 = 0
-
-           
+            replot(gvars)
+            
+            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            m1 = 0
+             zloc  = list(x=NULL, y=NULL)
+            next
+            
           }
 
 ########################################################### 
@@ -546,18 +629,19 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
 ####  calculate the max normal stress
 
-                   MAXSHEAR = !MAXSHEAR
+            gvars$MAXSHEAR = !gvars$MAXSHEAR
 
-                   if(is.null(Stensor)) {
-                     print("No Stress Tensor")
-                     MAXSHEAR =FALSE }
-                   
-            replot()
+            if(is.null(Stensor)) {
+              print("No Stress Tensor")
+              gvars$MAXSHEAR =FALSE }
             
-             buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
-           m1 = 0
-
-           
+            replot(gvars)
+            
+            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            m1 = 0
+             zloc  = list(x=NULL, y=NULL)
+            next
+            
           }
 ########################################################### 
 ########################################################### 
@@ -566,14 +650,14 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
           {
 
 
-            print(PPs)
+            print(gvars$PPs)
             
-            BV = TriangleCenter(PPs[1,1:3],PPs[2,1:3], PPs[3,1:3] )
-            CIRCview =   BV$Cinscribed  %*% Rview
+            BV = TriangleCenter(gvars$PPs[1,1:3],gvars$PPs[2,1:3], gvars$PPs[3,1:3] )
+            CIRCview =   BV$Cinscribed  %*% gvars$Rview
 
             lines(CIRCview[,1], CIRCview[,2], col='purple')
 
-            cview =    BV$Center %*%  Rview
+            cview =    BV$Center %*%  gvars$Rview
 
             points(cview[1,1], cview[1,2])
 
@@ -582,27 +666,23 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
             
             segments(  cview[1,1], cview[1,2]  , CIRCview[,1], CIRCview[,2], col=acols)
             
-
             vees = sweep(BV$Cinscribed , 2, BV$Center , "-")
             rees = sweep(vees , 1, apply(vees, 1,ampvec) , "/")
 
-            TAUline =  NN[1]*rees[,1]*ES$values[1] + NN[2]*rees[,2] * ES$values[2]  +NN[3]*rees[,3] *  ES$values[3]
-
+            TAUline =  gvars$NN[1]*rees[,1]*gvars$ES$values[1] +
+              gvars$NN[2]*rees[,2] * gvars$ES$values[2]  +
+                gvars$NN[3]*rees[,3] *  gvars$ES$values[3]
 
             #####   get an angle here, relative to downdip direction unless
             ########    normal is pointing up, then use X direction
 
-
-            
             whTAU = which.max(TAUline)
            
-
            ###  ampTAU = ampvec(BV$Center[,1:3]-BV$Cinscribed[whTAU, 1:3])
 
             ####   get horizontal: cross product of normal(NN) and vertical vector:
 
-            
-            hozvec = AXB.prod(NN, c(0,0,1))
+            hozvec = AXB.prod(gvars$NN, c(0,0,1))
             Ahoz = ampvec(hozvec)
             if(Ahoz!=0)
               {
@@ -613,12 +693,9 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
                 hozvec = c(0,1,0)
               }
             
-
-            
             dotTAU = (hozvec[1] *rees[,1]  +  hozvec[2] *rees[,2]  + hozvec[3] *rees[,3])
 
             angTAU = 180*acos(dotTAU)/pi
-
 
             H1N1 = c(BV$Center[1:3]+ BV$r*hozvec, 0)
             
@@ -626,8 +703,8 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
              arrows(  cview[1,1], cview[1,2]  ,VH1N1[ 1], VH1N1[2], col='black', length=0.1, lty=2 )
 
-
-             arrows(  cview[1,1], cview[1,2]  , CIRCview[whTAU,1], CIRCview[whTAU,2], col='black', length=0.1, lwd=1.2 )
+             arrows(  cview[1,1], cview[1,2]  , CIRCview[whTAU,1],
+                    CIRCview[whTAU,2], col='black', length=0.1, lwd=1.2 )
 
             
             umine = par("usr")
@@ -656,39 +733,28 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
           }
 
 
-            if(length( dev.list())<3)
+            if( is.null(gvars$devAUX) )
               {
-                devAUX = dev.new()
-                
-                plot(angTAU, TAUline, col=acols)
-                  abline(h=tauSHEARmax, col=grey(.85))
-                abline(v=angTAU[whTAU ], lty=2, col=grey(.85))
-                   
-                
-                dev.set(devCUBE)
-                
+                dev.new()
+                gvars$devAUX = dev.cur()
               }
             else
-              {            
-                dev.set(devAUX )
+              { 
+                dev.set(gvars$devAUX )
+              }
                 plot(angTAU, TAUline, col=acols)
-                abline(h=tauSHEARmax, col=grey(.85))
+                abline(h=gvars$tauSHEARmax, col=grey(.85))
                 abline(v=angTAU[whTAU ], lty=2, col=grey(.85))
                        
-                dev.set(devCUBE)
-              }
-
-            
-
-            
-
-            
+                dev.set(gvars$devCUBE)
+              
 
             ## replot()
             
           ##   buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
            m1 = 0
-
+             zloc  = list(x=NULL, y=NULL)
+            next
            
           }
 
@@ -699,7 +765,7 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 ###########################################################
         
         if(K[Nclick] == match("STens", labs, nomatch = NOLAB))
-          {
+          {   ####### STens
 
 
             cat(c("################################",
@@ -727,7 +793,7 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 
                 if(length(nstress)==3)
                   {
-                    Stensor = diag(nstress)
+                    gvars$Stensor = diag(nstress)
 
                   }
                 else
@@ -741,55 +807,44 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
                     MAT[ lower.tri(MAT, diag=TRUE)] = nstress
                     MAT[ upper.tri(MAT) ] = MAT[lower.tri(MAT)]
 
-                    Stensor = MAT
+                    gvars$Stensor = MAT
 
                   }
                 cat("INPUT TENSOR:", sep="\n")
                 
-                for(is in 1:3){ cat(paste(Stensor[is,], collapse=" "), sep="\n" ) }
+                for(is in 1:3){ cat(paste(gvars$Stensor[is,], collapse=" "), sep="\n" ) }
                 cat("", sep="\n")
 
-                ES = eigen(Stensor)
-                MAXSTRESS = TRUE
-                MAXSHEAR = TRUE
+                gvars$ES = eigen(gvars$Stensor)
+                gvars$MAXSTRESS = TRUE
+                gvars$MAXSHEAR = TRUE
 
+                gvars = fresheng(gvars)
 
-                
-
-                if(length( dev.list())<2)
+                if(is.null(gvars$devMOHR)  )
                   {
-                    devMOHR = dev.new()
-                    DoMohr(Stensor)
-                    dev.set(dev.prev())
-                    
+                    dev.new()
+                    gvars$devMOHR = dev.cur()
+
                   }
                 else
-                  {            
-                    devMOHR = dev.set(dev.next() )
+                  {    
+                     dev.set( gvars$devMOHR)
+                   }
                     DoMohr(Stensor)
                     dev.set(dev.prev())
-                  }
 
-
-                sigNORMmax = NN[1]^2*ES$values[1] + NN[2]^2 * ES$values[2]  +NN[3]^2 *  ES$values[3]  
                 
-                
-                tauSHEARmax  = NN[1]^2*NN[2]^2*(ES$values[1]-ES$values[2])^2 +
-                  NN[2]^2 *NN[3]^2 * (ES$values[2]-ES$values[3])^2  +
-                    NN[3]^2 *NN[1]^2 *  (ES$values[1] -ES$values[3])^2
-                
-                tauSHEARmax = sqrt(tauSHEARmax)
-                
-                
-                
-                replot()
+                replot(gvars)
                 
                 buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
                 m1 = 0
 
               }
+
+             zloc  = list(x=NULL, y=NULL)
             
-            
+            next
 
 
           }  
@@ -799,11 +854,6 @@ pdcols = c("black", "darkmagenta", "forestgreen", "blueviolet",
 ###########################################################
 
      
-
-        iloc = locator(1,type='p')
-##### print(iloc)
-        zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
-        Nclick = length(iloc$x)
         if(is.null(zloc$x)) { return(sloc) }
         K =  whichbutt(iloc , buttons)
 
