@@ -100,7 +100,7 @@ library(stats)
       }
 xin = c(2600, 2.0e+07)
 
-FOUT = optim(xin , fr)
+FOUT = stats::optim(xin , fr)
 
   Btest = mogiM(R=EX,F=FOUT$par[1] ,A=FOUT$par[2])
 

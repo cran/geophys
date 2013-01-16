@@ -58,7 +58,7 @@ v2 = c(  V2[2]-V2[1] ,    V2[4]-V2[3]      )
 
   SENS1 = sign( AXB.prod(u1, u2)[3] )
  
-    
+    ####  if v1 or v2 are points and not vectors, need to do something different
 VP = vecproj(v1, v2)
 
 ##   extend1 = sqrt(vlen(v2) ^2 - (VP$dis1)^2)

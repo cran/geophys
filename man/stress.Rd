@@ -7,7 +7,8 @@
   an arbitrary plane given a stress tensor.
 }
 \usage{
-stress(PPs = matrix(ncol = 4, nrow = 3), Rview = c(-130, -50), xscale = 100, Stensor = matrix(ncol = 3, nrow = 3))
+stress(PPs = matrix(ncol = 4, nrow = 3), Rview = c(-130, -50),
+xscale = 100, Stensor = matrix(ncol = 3, nrow = 3))
 }
 \arguments{
   \item{PPs}{3Points in 3 by 4 matrix
@@ -64,7 +65,8 @@ P3 = c(1, 1, 0.4, 0)
 
   S = stressSETUP(P1, P2, P3, xscale=30   )
 
-stress(PPs = S$PPs, Rview =S$Rview, xscale = S$xscale, Stensor=Stensor )
+stress(PPs = S$PPs, Rview =S$Rview,
+     xscale = S$xscale, Stensor=Stensor )
 
 
 

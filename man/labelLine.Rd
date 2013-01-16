@@ -5,7 +5,9 @@
 \description{Label a Line Segment
 }
 \usage{
-labelLine(P1, P2, above = TRUE, dinch = 0.2, lab = "text", acode = 3, alength = 0.06, aty = 1, acol = "black", bty = 1, bcol = "black", tcol = "black", font = 1, cex = 1)
+labelLine(P1, P2, above = TRUE, dinch = 0.2, lab = "text",
+ acode = 3, alength = 0.06, aty = 1, acol = "black", bty = 1,
+ bcol = "black", tcol = "black", font = 1, cex = 1)
 }
 \arguments{
   \item{P1}{Point 1 c(x,y)
@@ -66,8 +68,10 @@ P2 =  c(V1[2], V1[4])
  plot(c(P1[1], P2[1]), c(P1[2], P2[2] ), asp=1, type='n' )
    arrows(P1[1], P1[2], P2[1], P2[2], length=.04, col='red')
     
-   labelLine( P1, P2 , lab="ABOVE", dinch = .5, aty=2, acol='blue'  )
-   labelLine( P1, P2 , above=FALSE, lab="below", dinch = .5, aty=2, acol='green', tcol="magenta"  )
+   labelLine( P1, P2 , lab="ABOVE", dinch = .5,
+           aty=2, acol='blue'  )
+   labelLine( P1, P2 , above=FALSE, lab="below",
+         dinch = .5, aty=2, acol='green', tcol="magenta"  )
 
 
  

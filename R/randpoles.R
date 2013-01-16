@@ -32,9 +32,9 @@ randpoles<-function(az ,   iang, alphadeg, opt="unif", BALL.radius = 1,N = 10,  
     D = cbind(x,y,z)
     
 
-    ry = roty3(iang)
+    ry =  RFOC::roty3(iang)
     
-    rz = rotz3(az)
+    rz =  RFOC::rotz3(az)
 
     Rmat = ry %*% rz
     g = D %*% Rmat

@@ -11,23 +11,6 @@ function(Stensor=diag(c(3,2,1)) , axis=NULL )
     }
 
 ####   s1  = Stensor
-  darc <- function ( rad=1, ang1=0, ang2=360, x1=0, y1=0, n=1)
-    {
-
-      if (missing(n)) n = 1
-      if (missing(x1))  x1 = 0
-      if (missing(y1))  y1 = 0
-      if (missing(ang1))  ang1=0
-      if (missing(ang2))  ang2=360
-
-      if(ang1>ang2 & n>0) n = -n
-
-      i = pi * seq(from =ang1, to = ang2, by = n)/180
-      cx = rad*cos(i)
-      cy = rad*sin(i)
-      C = list(x=x1+cx, y = y1+cy)
-      return(C)
-    }
 
   di = dim(Stensor)
 
@@ -72,7 +55,7 @@ function(Stensor=diag(c(3,2,1)) , axis=NULL )
       ex = Save
       why = 0
 
-      cmohr = darc( rad=Rmohr, ang1=0, ang2=360, x1=ex, y1=why, n=1)
+      cmohr = GEOmap::darc( rad=Rmohr, ang1=0, ang2=360, x1=ex, y1=why, n=1)
 
       RNGM = range( cmohr$x)
       PXrange = c(0 , RNGM[2]+0.05*diff(RNGM), RNGM[1]-0.05*diff(RNGM))
@@ -150,9 +133,9 @@ function(Stensor=diag(c(3,2,1)) , axis=NULL )
       Rmohr3 = abs(s2-x3)
 
       ###   calculate the points of the circles
-      cmohr1 = darc( rad=Rmohr1, ang1=0, ang2=360, x1=x1, y1=0, n=1)
-      cmohr2 = darc( rad=Rmohr2, ang1=0, ang2=360, x1=x2, y1=0, n=1)
-      cmohr3 = darc( rad=Rmohr3, ang1=0, ang2=360, x1=x3, y1=0, n=1)
+      cmohr1 = GEOmap::darc( rad=Rmohr1, ang1=0, ang2=360, x1=x1, y1=0, n=1)
+      cmohr2 = GEOmap::darc( rad=Rmohr2, ang1=0, ang2=360, x1=x2, y1=0, n=1)
+      cmohr3 = GEOmap::darc( rad=Rmohr3, ang1=0, ang2=360, x1=x3, y1=0, n=1)
 
       #####  for plotting get the range of the plot
       RNGM = range( c(cmohr1$x,cmohr2$x, cmohr3$x    ))

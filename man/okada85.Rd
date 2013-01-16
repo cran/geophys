@@ -7,7 +7,8 @@
   based on Okada 1985 code.
 }
 \usage{
-okada85(e = 0, n = 0, depth = 0, strike = 20, dip = 20, L = 5, W = 3, rake = 20, slip = 1, U3 = 1, nu = 0.25)
+okada85(e = 0, n = 0, depth = 0, strike = 20,
+dip = 20, L = 5, W = 3, rake = 20, slip = 1, U3 = 1, nu = 0.25)
 }
 \arguments{
   \item{e}{  vector or matrix, Easting Observation, km
@@ -34,16 +35,15 @@ okada85(e = 0, n = 0, depth = 0, strike = 20, dip = 20, L = 5, W = 3, rake = 20,
 }
 }
 \details{
-       Computes displacements, tilts and strains at the surface of an elastic
-       half-space, due to a dislocation defined by RAKE, SLIP, and OPEN on a
-       rectangular fault defined by orientation STRIKE and DIP, and size LENGTH and
-       WIDTH. The fault centroid is located (0,0,-DEPTH).
+       Computes displacements, tilts and strains at the surface of an
+       elastic half-space, due to a dislocation defined by RAKE, SLIP,
+       and OPEN on a rectangular fault defined by orientation STRIKE and
+       DIP, and size LENGTH and WIDTH. The fault centroid is located
+       (0,0,-DEPTH).
 
        R-Code is a translation of original Matlab code by Francois
-       Beauducel.
-       UNC student Lan Ngo worked on the
-       first  version and J. M. Lees tested, verified and finalized
-       the package.
+       Beauducel.  UNC student Lan Ngo worked on the first version and
+       J. M. Lees tested, verified and finalized the package.
 
 
   
@@ -99,18 +99,21 @@ library(RPMG)
 
 EX = seq(from=-10, to=10, length=50)
 WHY = seq(from=-10, to=10, length=50)
-M = meshgrid(EX, WHY )
+M = RPMG::meshgrid(EX, WHY )
 
 OKout  = okada85(M$x, M$y,2,30,70,5,3,-45,1,1) 
 old.par <- par(no.readonly = TRUE) 
 
 par(mfrow=c(2, 2))
 
-image(EX, WHY, OKout$uN, col=terrain.colors(100) , asp=1, main="uN" );contour(EX, WHY, OKout$uN, add=TRUE)
+image(EX, WHY, OKout$uN, col=terrain.colors(100) ,
+asp=1, main="uN" );contour(EX, WHY, OKout$uN, add=TRUE)
 
-image(EX, WHY, OKout$uE, col=terrain.colors(100) , asp=1 , main="uE" );contour(EX, WHY, OKout$uE, add=TRUE)
+image(EX, WHY, OKout$uE, col=terrain.colors(100) ,
+asp=1 , main="uE" );contour(EX, WHY, OKout$uE, add=TRUE)
 
-image(EX, WHY, OKout$uZ, col=terrain.colors(100) , asp=1, main="uZ" );contour(EX, WHY, OKout$uZ,  add=TRUE)
+image(EX, WHY, OKout$uZ, col=terrain.colors(100) ,
+asp=1, main="uZ" );contour(EX, WHY, OKout$uZ,  add=TRUE)
 
 plot(EX, OKout$uZ[, 25 ])
 

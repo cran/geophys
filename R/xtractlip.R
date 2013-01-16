@@ -2,7 +2,7 @@
 xtractlip<-function(AF)
   {
 
-    require(cluster)
+    ## require(cluster)
 
 
 
@@ -153,7 +153,7 @@ if(FALSE)
     minax = dix[w1]
     maxax =  dix[w2]
 
-CIRC1 =  darc(rad =minax , ang1 = 0, ang2 = 360, x1 = 0, y1 = 0, n = 1)
+CIRC1 =  GEOmap::darc(rad =minax , ang1 = 0, ang2 = 360, x1 = 0, y1 = 0, n = 1)
 lines(CIRC1)
     
     rang = atan2(  (gy[w2]) ,     (gx[w2]))  
@@ -193,7 +193,7 @@ JL = jlipse(AF$mx, AF$my, mlarge, msmal,  rang*180/pi, by = 5 )
 ######  lines(JL)
 
 
-    exy <- ellipsoidhull(unname(cbind(fx+AF$mx, fy+AF$my)))
+    exy <- cluster::ellipsoidhull(unname(cbind(fx+AF$mx, fy+AF$my)))
     ## lines(predict(exy))
 
     invisible(list(lip=list(x=fx+AF$mx, y=fy+AF$my), Elips=JL,    hull=exy))

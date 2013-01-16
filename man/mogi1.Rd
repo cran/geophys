@@ -76,7 +76,7 @@ plot(rho, o1$ud)
 
 EX = seq(from=-3, by=.1, to= 3)
 
-mm = meshgrid(EX, EX)
+mm = RPMG::meshgrid(EX, EX)
 
 rho = sqrt(mm$x^2 +  mm$y^2)
 

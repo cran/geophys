@@ -35,7 +35,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
  planecol = 'brown'
 
 ####   view angle
- Rview  =    ROTZ(-130) %*% ROTX(-50) 
+ Rview  =    RFOC::ROTZ(-130) %*% RFOC::ROTX(-50) 
 
 ###   set arbitrary scale
     xscale = 100

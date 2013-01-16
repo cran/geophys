@@ -59,7 +59,7 @@ AF = plotfry(FF, dis=30)
 
 Z = xtractlip(AF)
 
-lines(predict(Z$hull), col='red')  
+lines(cluster::predict.ellipsoid(Z$hull), col='red')  
    
 
 }

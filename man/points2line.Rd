@@ -50,7 +50,8 @@ PLOTbox(S$Rax, S$Rbox, axcol= 'green', boxcol= 'purple')
 
    
 
-        VL =   cbind( rep(S$Rbox[basepoint,1] , length(legpoints)), rep(S$Rbox[basepoint,2] , length(legpoints)),
+        VL =   cbind( rep(S$Rbox[basepoint,1] , length(legpoints)),
+     rep(S$Rbox[basepoint,2] , length(legpoints)),
           S$Rbox[legpoints,1], S$Rbox[legpoints,2])
 
       Lp=list() 

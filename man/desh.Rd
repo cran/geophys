@@ -49,7 +49,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
      mu = E/(2*(1+nu));
     
 EX = seq(from=-3, by=.4, to= 3)
-     mm = meshgrid(EX, EX)
+     mm = RPMG::meshgrid(EX, EX)
   rho = sqrt(mm$x^2 +  mm$y^2)
 
 cen = list(x=mean(EX), y=mean(EX))

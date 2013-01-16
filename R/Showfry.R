@@ -30,7 +30,7 @@ Showfry<-function(RDAT, shear= matrix(c(1, 1.2, 0,  1)), rad=75)
     AF= plotfry(FF, dis=30)
     Z = xtractlip(AF)
     
-    lines(predict(Z$hull), col='red', lwd=1, lty=2)  
+    lines(cluster::predict.ellipsoid(Z$hull), col='red', lwd=1, lty=2)  
     points(Z$lip$x, Z$lip$y, col='green', pch=3, cex=.5)
 
   lines(Z$Elips,  col='brown', lwd=1.5)

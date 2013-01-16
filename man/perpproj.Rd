@@ -1,11 +1,14 @@
 \name{perpproj}
 \alias{perpproj}
+\alias{pointproj}
 \title{Perpendicular Projection
 }
 \description{Perpendicular Projection in two-dimensions
 }
 \usage{
 perpproj(V1, V2, add = FALSE)
+pointproj(P1, VEC )
+
 }
 \arguments{
   \item{V1}{vector 1 
@@ -13,7 +16,14 @@ perpproj(V1, V2, add = FALSE)
   \item{V2}{vector 1 
 }
   \item{add}{logical, TRUE add to plot
-}
+  }
+  \item{P1}{point coordinates, 
+  }
+  \item{VEC}{vector coordinates, 
+  }
+
+
+  
 }
 \details{
   V1 and V2 are arrays with, for example, V1=c(x1 , x2 , y1, y2)
@@ -27,6 +37,11 @@ perpproj(V1, V2, add = FALSE)
   and the tail of each vector is moved to that point
   for determining the projection positions.
 
+  for the pointproj the input can be a 2-element vector
+  or a list with (x,y) elements.  The VEC should be
+  organized, as (x1,x2, y1, y2) or as an (x,y) list.
+  The P1 vector can include many points, so a large number of
+  projections are doable.
   
 }
 \value{

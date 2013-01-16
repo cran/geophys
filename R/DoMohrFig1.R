@@ -26,7 +26,7 @@ ps2 = ES$values[2]
 ex = Save
 why = 0
 
-cmohr = darc( rad=Rmohr, ang1=0, ang2=360, x1=ex, y1=why, n=1)
+cmohr = GEOmap::darc( rad=Rmohr, ang1=0, ang2=360, x1=ex, y1=why, n=1)
 
 RNGM = range( cmohr$x)
 Prange = c(0 , RNGM[2]+0.05*diff(RNGM))

@@ -47,10 +47,10 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 
 
-net();
+RFOC::net();
 GG = randpoles(30, 40, 10, opt="norm", N=20)
 
-addsmallcirc(30, 40, 10)
+RFOC::addsmallcirc(30, 40, 10)
 
 
 

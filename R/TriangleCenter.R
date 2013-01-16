@@ -75,7 +75,7 @@ UMAT = (PP) %*% MF
 cc = c( AA$BI, 0.0, 1)
 
 
-flatcirc =   darc(rad = AA$r, ang1 = A1, ang2 = A2, x1 = cc[1], y1 = cc[2], n = KNum) 
+flatcirc =   GEOmap::darc(rad = AA$r, ang1 = A1, ang2 = A2, x1 = cc[1], y1 = cc[2], n = KNum) 
 
 cr = cc %*% solve(MF)
 

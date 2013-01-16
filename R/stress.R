@@ -87,7 +87,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
     if(is.vector(Rview))
       {
         ANG = Rview
-        Rview  =    ROTZ(ANG[1]) %*% ROTX(ANG[2]) 
+        Rview  =    RFOC::ROTZ(ANG[1]) %*% RFOC::ROTX(ANG[2]) 
 
       }
     
@@ -239,7 +239,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
         L = list(x1 = PPs[3, 1], y1 = PPs[3, 2], z1 = PPs[3, 3], 
           x2 = PPs[3, 1] + xscale * B[1]/5, y2 = PPs[3, 2] + xscale * 
           B[2]/5, z2 = PPs[3, 3] + xscale * B[3]/5)
-          BOXarrows3D(L$x1, L$y1, L$z1, L$x2, L$y2, L$z2, aglyph = aglyph, 
+          RFOC::BOXarrows3D(L$x1, L$y1, L$z1, L$x2, L$y2, L$z2, aglyph = aglyph, 
             Rview = Rview, col = "green")
       }
     
@@ -365,14 +365,14 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
     charheight  =  strheight("TEST" , units = "user", cex = cex, vfont = vfont)
     
     
-    buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+    buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
 
     zloc  = list(x=NULL, y=NULL)
     
     while(TRUE)
       {
         iloc = locator(1,type='p')
-        K =  whichbutt(iloc , buttons)
+        K =  RPMG::whichbutt(iloc , buttons)
 ##### print(iloc)
         zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
         Nclick = length(iloc$x)
@@ -432,7 +432,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
             gvars = fresheng(gvars)
             replot(gvars )
 
-              buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+              buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
             m1 = 0
             next
             
@@ -446,7 +446,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
         if(K[Nclick] == match("DONE", labs, nomatch = NOLAB))
           {
 
-            buttons = rowBUTTONS(labs, col=rep(grey(.85), times=length(labs) ), pch=pchlabs)
+            buttons = RPMG::rowBUTTONS(labs, col=rep(grey(.85), times=length(labs) ), pch=pchlabs)
             title(main="RETURN to MAIN")
             
                 zloc  = list(x=NULL, y=NULL)
@@ -460,7 +460,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
         if(K[Nclick] == match("QUIT", labs, nomatch = NOLAB))
           {
 
-             buttons = rowBUTTONS(labs, col=rep(grey(.85), times=length(labs) ), pch=pchlabs)
+             buttons = RPMG::rowBUTTONS(labs, col=rep(grey(.85), times=length(labs) ), pch=pchlabs)
              title(main="RETURN to MAIN")
 
              
@@ -483,7 +483,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
 
            replot(gvars )
 
-           buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+           buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
           ## print("pressed refresh")
            m1 = 0
                zloc  = list(x=NULL, y=NULL)
@@ -497,7 +497,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
            ##  PPs = MOVEpt(PPs, Rbox, Rview, xscale )
               replot(gvars)
             ##  NN = NORMvec(PPs, xscale, Rview)
-           buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+           buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
            m1 = 0
       
          ##  print("pressed replot")
@@ -550,7 +550,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
                 arrows(gvars$P1$x, gvars$P1$y, gvars$P2$x, gvars$P2$y, length = 0.1, col=acol)
                 text(gvars$P1$x, gvars$P1$y, labels=TauNumber, pos=2, cex=.8, col=acol)
                 
-               ##  buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+               ##  buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
                ##  m1 = 0
 
                 
@@ -587,7 +587,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
             
              replot(gvars )
 
-             buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+             buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
            m1 = 0
              zloc  = list(x=NULL, y=NULL)
             next
@@ -612,7 +612,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
             
             replot(gvars)
             
-            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
             m1 = 0
              zloc  = list(x=NULL, y=NULL)
             next
@@ -637,7 +637,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
             
             replot(gvars)
             
-            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
             m1 = 0
              zloc  = list(x=NULL, y=NULL)
             next
@@ -751,7 +751,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
 
             ## replot()
             
-          ##   buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+          ##   buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
            m1 = 0
              zloc  = list(x=NULL, y=NULL)
             next
@@ -837,7 +837,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
                 
                 replot(gvars)
                 
-                buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+                buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
                 m1 = 0
 
               }
@@ -855,7 +855,7 @@ stress<-function(PPs=matrix(ncol=4, nrow=3) ,  Rview=c(-130, -50) ,  xscale=100,
 
      
         if(is.null(zloc$x)) { return(sloc) }
-        K =  whichbutt(iloc , buttons)
+        K =  RPMG::whichbutt(iloc , buttons)
 
 
  

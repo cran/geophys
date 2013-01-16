@@ -21,7 +21,7 @@ LazyLoad: \tab yes\cr
 \author{
 Jonathan M. Lees
 
-Maintainer: Jonathan M. Lees<jonathan.lees@unc.edu>
+Maintainer: Jonathan M. Lees <jonathan.lees@unc.edu>
 }
 \references{
 Mogi
@@ -29,7 +29,7 @@ Mogi
 
 \keyword{ package }
 \seealso{
-RSEIS, RFOC, zoeppritz
+RSEIS, RFOC, GEOmap, zoeppritz
 }
 \examples{
 

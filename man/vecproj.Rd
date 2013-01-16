@@ -59,7 +59,7 @@ j2 = atan2(P2[2], P2[1])*180/pi
 L1 = vlength(P1)
 L2 = vlength(P2)
 
-A = darc(L1*.2, j1, j2, 0, 0, n=1)
+A = GEOmap::darc(L1*.2, j1, j2, 0, 0, n=1)
 
 lines(A)
 an = length(A$x)

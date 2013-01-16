@@ -15,9 +15,9 @@ function(P1=c(.2, 1,1,0 ), P2=c(1, .1,1,0), P3=c(1, 1,.4,0), xscale=30)
 
     #### this is basic setup for the box rotation routines
     
-    require(RFOC)
+   ####  require(RFOC)
     
-    Rview  =    ROTZ(-125) %*% ROTX(-55) 
+    Rview  =    RFOC::ROTZ(-125) %*% RFOC::ROTX(-55) 
 
     BOX <-matrix(c(0,0,0,0,
                    0, 1, 0,0,
@@ -52,7 +52,7 @@ function(P1=c(.2, 1,1,0 ), P2=c(1, .1,1,0), P3=c(1, 1,.4,0), xscale=30)
     len =xscale* .7/6
     basethick =xscale* 0.05/2
     headlip =xscale* .02/2
-    aglyph = Z3Darrow(len = len , basethick =basethick , headlen =headlen , headlip=headlip )
+    aglyph = RFOC::Z3Darrow(len = len , basethick =basethick , headlen =headlen , headlip=headlip )
 
     
     P1 = xscale*P1

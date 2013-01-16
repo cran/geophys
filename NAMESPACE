@@ -1,2 +1,7 @@
 # Export all names
 exportPattern(".")
+import(RPMG)
+import(RSEIS)
+import(RFOC)
+import(GEOmap)
+importFrom(cluster, ellipsoidhull, predict.ellipsoid)

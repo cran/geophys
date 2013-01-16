@@ -7,7 +7,7 @@ function(PPs, xscale, Rview, aglyph=list(), add=TRUE)
       len =xscale* .7/6
       basethick =xscale* 0.05/2
       headlip =xscale* .02/2
-      aglyph = Z3Darrow(len = len , basethick =basethick , headlen =headlen , headlip=headlip )
+      aglyph = RFOC::Z3Darrow(len = len , basethick =basethick , headlen =headlen , headlip=headlip )
     }
 
     
@@ -27,7 +27,7 @@ function(PPs, xscale, Rview, aglyph=list(), add=TRUE)
       y2 =PPs[3,2]+xscale*B[2] /5,
       z2=PPs[3,3]+xscale*B[3] /5 
       ) 
-    if(add) BOXarrows3D(L$x1,L$y1,L$z1, L$x2,L$y2,L$z2,  aglyph=aglyph,  Rview=Rview, col='green')
+    if(add) RFOC::BOXarrows3D(L$x1,L$y1,L$z1, L$x2,L$y2,L$z2,  aglyph=aglyph,  Rview=Rview, col='green')
 
     return(B)
 

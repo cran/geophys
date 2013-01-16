@@ -89,7 +89,7 @@ NinePointCircle<-function (P1, P2 = c(0, 1), P3 = c(1, 0), add = FALSE, SHOW=TRU
 
      text(TRI$ALT[,1]  ,  TRI$ALT[,2], labels=c("G", "H", "I"), pos=3)
 
-     dcirc = darc(rad = NineCent$R, ang1 = 0, ang2 = 360, x1 = NineCent$CIRCUM[1], 
+     dcirc = GEOmap::darc(rad = NineCent$R, ang1 = 0, ang2 = 360, x1 = NineCent$CIRCUM[1], 
        y1 = NineCent$CIRCUM[2], n = 1)
      lines(dcirc)
 

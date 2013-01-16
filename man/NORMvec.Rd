@@ -40,7 +40,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
  planecol = 'brown'
 
 ####   view angle
- Rview  =    ROTZ(-130) %*% ROTX(-50) 
+ Rview  =    RFOC::ROTZ(-130) %*% RFOC::ROTX(-50) 
 
 ###   set arbitrary scale
     xscale = 100
@@ -50,7 +50,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
        len =xscale* .7/6
        basethick =xscale* 0.05/2
        headlip =xscale* .02/2
-       aglyph = Z3Darrow(len = len , basethick =basethick , headlen =headlen , headlip=headlip )
+       aglyph = RFOC::Z3Darrow(len = len , basethick =basethick ,
+             headlen =headlen , headlip=headlip )
 
 ####   set three points and combine them with rbind
      P1 = xscale*c(.2, 1,1,0)
