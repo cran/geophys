@@ -1,6 +1,6 @@
 mogiM<-function(R=1,F=1,A=0.1,P=1e5,E=10e9,nu=0.25)
   {
-##################   adapted from the matlab code of François Beauducel
+##################   adapted from the matlab code of Francois Beauducel
 ######%MOGI   Mogi's model (point source in elastic half-space).
 ######%        computes radial
 ######%       and vertical displacements Ur and Uz, ground tilt Dt, radial and
@@ -10,9 +10,9 @@ mogiM<-function(R=1,F=1,A=0.1,P=1e5,E=10e9,nu=0.25)
 ######%       body and approximation for A << F (center of dilatation). Formula by
 ######%       Anderson [1936] and Mogi [1958].
 ######%
-######%       MOGI(R,F,V) and MOGI(R,F,A,µ,P) are also allowed for compatibility
-######%       (Mogi's original equation considers an isotropic material with Lamé's
-######%       constants equal, i.e., lambda = µ, Poisson's ratio = 0.25).
+######%       MOGI(R,F,V) and MOGI(R,F,A,mu,P) are also allowed for compatibility
+######%       (Mogi's original equation considers an isotropic material with Lame's
+######%       constants equal, i.e., lambda = mu, Poisson's ratio = 0.25).
 ######%
 ######%       Input variables are:
 ######%          F: depth of the center of the sphere from the surface,
@@ -21,19 +21,19 @@ mogiM<-function(R=1,F=1,A=0.1,P=1e5,E=10e9,nu=0.25)
 ######%          P: hydrostatic pressure change in the sphere,
 ######%          E: elasticity (Young's modulus),
 ######%         nu: Poisson's ratio,
-######%          µ: rigidity (Lamé's constant in case of isotropic material).
+######%          mu: rigidity (Lame's constant in case of isotropic material).
 ######%
 ######%       Notes:
-######%               - Equations are all vectorized, so variables R,F,V,A,µ and P are
+######%               - Equations are all vectorized, so variables R,F,V,A,mu and P are
 ######%                 scalar but any of them can be vector or matrix, then outputs
 ######%                 will be vector or matrix of the same size.
 ######%               - Convention: Uz > 0 = UP, f is depth so in -Z direction.
 ######%               - Units should be constistent, e.g.: R, F, A, Ur and Uz in m imply
-######%                 V in m3; E, µ and P in Pa; Dt in rad, Er, Et and nu dimensionless.
+######%                 V in m3; E, mu and P in Pa; Dt in rad, Er, Et and nu dimensionless.
 ######%
 
 ######%
-######%       Author: François Beauducel <beauducel@ipgp.fr>
+######%       Author: Francois Beauducel <beauducel@ipgp.fr>
 ######%         Institut de Physique du Globe de Paris
 ######%       Created: 1997
 ######%       Updated: 2010-01-05
@@ -45,7 +45,7 @@ mogiM<-function(R=1,F=1,A=0.1,P=1e5,E=10e9,nu=0.25)
 ######%               deformations of the ground surfaces around them, Bull. Earthquake Res.
 ######%               Inst. Univ. Tokyo, 36, 99-134, 1958.
 
-######%       Copyright (c) 1997-2009, François Beauducel, covered by BSD License.
+######%       Copyright (c) 1997-2009, Francois Beauducel, covered by BSD License.
 ######%       All rights reserved.
 ######%
 

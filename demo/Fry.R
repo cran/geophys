@@ -8,7 +8,7 @@ DAT = randFRY(200)
 
 for(i in 1:length(DAT$x))
   {
-    dcirc = darc(rad = 5/2, ang1 = 0, ang2 = 360, x1 =DAT$x[i],  y1 = DAT$y[i] , n = 10)
+    dcirc = GEOmap::darc(rad = 5/2, ang1 = 0, ang2 = 360, x1 =DAT$x[i],  y1 = DAT$y[i] , n = 10)
     lines(dcirc, col='blue')
   }
 points(DAT$x, DAT$y, pch=3)

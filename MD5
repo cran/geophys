@@ -1,4 +1,4 @@
-a3f9386943ceeae2741c81f1a739f136 *DESCRIPTION
+a4b10e0e175107b1b003496a0d952156 *DESCRIPTION
 1db369b2f6e0c6c79f2bf71f87372fd7 *NAMESPACE
 d68f5aaa53f39bd96a78a52944395736 *R/AXB.prod.R
 7802df3993bc444dec70356f9df29432 *R/BMOD.R
@@ -35,10 +35,10 @@ e829eedb10ff7648e7fce3b58b910d8a *R/gravsub.R
 956b3f1474f618eb39f330e1d35a5316 *R/heat.sol.R
 e6e2cadc47fdf88542fecdcf41677a45 *R/labelLine.R
 35bf027e06e07231e8eba4f75ae408bc *R/lipper.R
-20a86ee50a701c16f8b9f889a61b783d *R/mogi1.R
-bcf5933810a3505a8f777264f972e366 *R/mogiM.R
+95f164a5614e2ce78ec5aca38ca062c7 *R/mogi1.R
+6fc09434f8d91a36d414b8bd9b1f1312 *R/mogiM.R
 24d9be15e65fddde9f4035590b6e50dd *R/mohrleg.R
-21ad77d91ecd8e3ef340f0d44c224d41 *R/okada85.R
+182cc988a5d95ee8aab01ffbc1767d4c *R/okada85.R
 8cd4ac6e639528b4cbff4f232861f6d2 *R/perpproj.R
 3301f4de4ca7cd251fad799d3e887268 *R/philpotts.erf.R
 5680187b5faae30877f40548f5f71a06 *R/plotfry.R
@@ -61,8 +61,8 @@ b0bdf7507d1c84c14bd915d311d25b8e *data/Glines.RData
 0ed8828999059f69a1cbd5b42cfa69a3 *data/PXY.RData
 997cf532623cad7d6143d102b89e0479 *data/PXY_BerrinoB.RData
 ecb332fea683ddc2c9265308b037f27a *demo/00Index
-537cfa95906a33712c62803ff9e720fb *demo/Fry.R
-77a5b6e058fa2685181221d09b43896b *demo/Sdemo.R
+98ecfe7272e8cb1be510c10f7b3d6bd0 *demo/Fry.R
+093fe4f46757a46406bba32ab73602df *demo/Sdemo.R
 4d1019513d78693aa6fca7abb97e40cf *man/AXB.prod.Rd
 967b21e4d3bfaf04152d9d1259d0c193 *man/BMOD.Rd
 6cdda73df0f09b70d9a05046f712220e *man/DGzx.Rd
@@ -71,7 +71,7 @@ cc4b6276b6b85d3d2a7548b6cdfd72dd *man/DO.DYKE.Rd
 5ce6b46d72f92bd335a9b8df3978db14 *man/DoMohr.Rd
 5469a64d3366085f1feaa33fb2cbc62d *man/DoMohrFig1.Rd
 b01353a7382a5cc8edb5e7c90cd79815 *man/Glines.Rd
-e70be82bdd4cb6c6bd11007b3971a206 *man/Maxstress.Rd
+2855a88ad4c2467d3c646e1c7aa25327 *man/Maxstress.Rd
 d9eda7098690ceef916ae2cbf5f77244 *man/ModelG.Rd
 d364b9e5b5ea82bbbf1c7b961e751a77 *man/NORMvec.Rd
 712b691b7ee0dc81c05374b7f833917e *man/NinePointCircle.Rd

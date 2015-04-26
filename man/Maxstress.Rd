@@ -42,6 +42,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{stress
 }
 \examples{
+
+
   S = stressSETUP( )
 
 Nvec = NORMvec(S$PPs, S$xscale, S$Rview, S$aglyph , add = FALSE)

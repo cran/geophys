@@ -11,15 +11,15 @@ function(d=1, f=1, a=0.1, P=1e5, mu=4e+09, nu=0.25)
     
   ###  mu = E/(2*(1+nu))
 
- ###  E, µ and P in Pa
+ ###  E, mu  and P in Pa
 
     
  ###    %	   E: elasticity (Young's modulus),
  ###%	  nu: Poisson's ratio,
- ###%	   µ: rigidity (Lamé's constant in case of isotropic material).
+ ###%	   mu: rigidity (Lame's constant in case of isotropic material).
 
 ###- Units should be constistent, e.g.: R, F, A, Ur and Uz in m imply
-###%		  V in m3; E, µ and P in Pa; Dt in rad, Er, Et and nu dimensionless.
+###		  V in m3; E, mu and P in Pa; Dt in rad, Er, Et and nu dimensionless.
     
 
     ##############   five parameters mogi source calculation
@@ -38,7 +38,7 @@ function(d=1, f=1, a=0.1, P=1e5, mu=4e+09, nu=0.25)
  ### %          P: hydrostatic pressure change in the sphere,
  ### %          E: elasticity (Young's modulus),
  ### %         nu: Poisson's ratio,
- ### %          µ: rigidity (Lamé's constant in case of isotropic material).
+ ### %          mu: rigidity (Lame's constant in case of isotropic material).
 
  ###  %         Mogi, K., Relations between the eruptions of various volcanoes and the
  ### %               deformations of the ground surfaces around them, Bull. Earthquake Res.
@@ -52,9 +52,9 @@ function(d=1, f=1, a=0.1, P=1e5, mu=4e+09, nu=0.25)
  ### %       body and approximation for A << F (center of dilatation). Formula by
  ### %       Anderson [1936] and Mogi [1958].
  ### %
- ### %       MOGI(R,F,V) and MOGI(R,F,A,µ,P) are also allowed for compatibility
- ### %       (Mogi's original equation considers an isotropic material with Lamé's
- ### %       constants equal, i.e., lambda = µ, Poisson's ratio = 0.25).
+ ### %       MOGI(R,F,V) and MOGI(R,F,A,mu,P) are also allowed for compatibility
+ ### %       (Mogi's original equation considers an isotropic material with Lame's
+ ### %       constants equal, i.e., lambda = mu, Poisson's ratio = 0.25).
  ### %%	  Anderson, E.M., Dynamics of the formation of cone-sheets, ring-dikes,
  ### %%		and cauldron-subsidences, Proc. R. Soc. Edinburgh, 56, 128-157,	1936.
  ### %%	  Mogi, K., Relations between the eruptions of various volcanoes and the

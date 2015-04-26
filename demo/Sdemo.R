@@ -94,18 +94,18 @@ dev.new(width=10, height=6 )
 
 par(mfrow=c(1,2))
     
-net()
-qpoint(30, 40, col = "red", UP=FALSE )
-qpoint(GG$az, GG$dip, col = "blue", UP=FALSE )
-rplane = lowplane(30-90, 40, UP=TRUE, col='red')
+RFOC::net()
+RFOC::qpoint(30, 40, col = "red", UP=FALSE )
+RFOC::qpoint(GG$az, GG$dip, col = "blue", UP=FALSE )
+rplane = RFOC::lowplane(30-90, 40, UP=TRUE, col='red')
 
 
 for(i in 1:length(GG$az))
   {
-    rplane = lowplane(GG$az[i]-90, GG$dip[i], UP=TRUE, col='blue')
+    rplane = RFOC::lowplane(GG$az[i]-90, GG$dip[i], UP=TRUE, col='blue')
   }
 
-g = TOCART(GG$az, GG$dip)
+g = RSEIS::TOCART(GG$az, GG$dip)
 
 AA = DoMohr(Stensor)
 

@@ -19,13 +19,13 @@ function(e=0,n=0,depth=0,strike=20, dip=20, L=5, W=3, rake=20, slip=1, U3=1, nu=
 #          E,N    : coordinates of observation points in a geographic referential
 #                   (East,North,Up) relative to fault centroid (units are described below)
 #          DEPTH  : depth of the fault centroid (DEPTH > 0)
-#          STRIKE : fault trace direction (0 to 360° relative to North), defined so
+#          STRIKE : fault trace direction (0 to 360 relative to North), defined so
 #                   that the fault dips to the right side of the trace
-#          DIP    : angle between the fault and a horizontal plane (0 to 90°)
+#          DIP    : angle between the fault and a horizontal plane (0 to 90)
 #          LENGTH : fault length in the STRIKE direction (LENGTH > 0)
 #          WIDTH  : fault width in the DIP direction (WIDTH > 0)
 #          RAKE   : direction the hanging wall moves during rupture, measured relative
-#                   to the fault STRIKE (-180 to 180°).
+#                   to the fault STRIKE (-180 to 180).
 #          SLIP   : dislocation in RAKE direction (length unit)
 #          OPEN   : dislocation in tensile component (same unit as SLIP)
 #
@@ -77,13 +77,13 @@ function(e=0,n=0,depth=0,strike=20, dip=20, L=5, W=3, rake=20, slip=1, U3=1, nu=
 #          [uE,uN,uZ] = okada85(E,N,2,30,70,5,3,-45,1,1,'plot');
 #          figure, surf(E,N,uN)
 #
-#       considers a 5x3 fault at depth 2, N30°-strike, 70°-dip, and unit dislocation
+#       considers a 5x3 fault at depth 2, N30-strike, 70-dip, and unit dislocation
 #       in all directions (reverse, senestral and open). Displacements are computed
 #       on a regular grid from -10 to 10, and North displacements are plotted as a
 #       surface.
 #
 #
-#       Author: François Beauducel <beauducel@ipgp.fr>
+#       Author: Francois Beauducel <beauducel@ipgp.fr>
 #          Institut de Physique du Globe de Paris
 #       Created: 1997
 #       Updated: 2011-03-08
