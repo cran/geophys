@@ -5,3 +5,10 @@ import(RSEIS)
 import(RFOC)
 import(GEOmap)
 importFrom(cluster, ellipsoidhull, predict.ellipsoid)
+importFrom("grDevices", "dev.cur", "dev.list", "dev.new", "dev.next",
+             "dev.prev", "dev.set", "grey", "rainbow", "rgb")
+importFrom("graphics", "abline", "arrows", "axis", "grid", "lines",
+             "locator", "matplot", "mtext", "par", "plot", "points",
+             "polygon", "rect", "segments", "strheight", "strwidth",
+             "text", "title")
+importFrom("stats", "median", "pnorm", "qnorm", "rnorm", "runif")

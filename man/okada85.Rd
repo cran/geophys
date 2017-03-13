@@ -86,6 +86,10 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
           uEZ = -uZE;
           uZZ = -(uEE + uNN)*NU/(1-NU);
 
+Be careful about the definition of strike: seems that here the
+strike may be measured positive north of east, not east of north as stated
+in the documentation above.
+
 
   
 }
