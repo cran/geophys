@@ -62,8 +62,8 @@ list:
   \item{uEE}{horizontal strains East-East}
 }
 \references{
-         Aki K., and P. G. Richards, Quantitative seismology, Freemann & Co,
-         New York, 1980.
+         Aki K., and P. G. Richards (1980) (ISBN-13: 978-1891389634) Quantitative seismology, Freemann & Co,
+         New York.
 	 
           Okada Y., Surface deformation due to shear and tensile faults in a
              half-space, Bull. Seismol. Soc. Am., 75:4, 1135-1154, 1985.

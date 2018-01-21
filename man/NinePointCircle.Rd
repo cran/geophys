@@ -51,7 +51,7 @@ NinePointCircle(P1, P2 = c(0, 1), P3 = c(1, 0), add = FALSE, SHOW = TRUE)
   \item{R}{radius of nine point circle}
 }
 \references{
-http://en.wikipedia.org/wiki/Nine-point_circle
+<http://en.wikipedia.org/wiki/Nine-point_circle>
   
 }
 \author{

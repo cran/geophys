@@ -35,7 +35,7 @@ ModelG(Data, labs = c("Done"), obs=NULL, ZCOLS=RPMG::pastel.colors(24, seed=2 ))
 \value{Model
 }
 \references{
-  Won and Bevis
+  Won and Bevis (1987) Computing the gravitational and magnetic anomalies due to a polygon: Algorithms and Fortran subroutines <doi:https://doi.org/10.1190/1.1442298>
 }
 \author{
 Jonathan M. Lees<jonathan.lees@unc.edu>

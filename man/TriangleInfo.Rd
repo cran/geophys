@@ -43,9 +43,9 @@ TriangleInfo(P1, P2 = c(0, 1), P3 = c(1, 0), add = FALSE)
 
 }
 \references{
-http://en.wikipedia.org/wiki/Triangle_center
+<http://en.wikipedia.org/wiki/Triangle_center>
 
-http://en.wikipedia.org/wiki/Encyclopedia_of_Triangle_Centers
+<http://en.wikipedia.org/wiki/Encyclopedia_of_Triangle_Centers>
 
   
 }

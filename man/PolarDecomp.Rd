@@ -24,7 +24,7 @@ PolarDecomp(A)
   \item{U}{matrix, orthogonal rotation matrix}
 }
 \references{
-  http://en.wikipedia.org/wiki/Finite_strain_theory
+  <http://en.wikipedia.org/wiki/Finite_strain_theory>
   
 }
 \author{

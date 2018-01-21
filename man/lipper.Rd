@@ -32,7 +32,7 @@ lipper(a, b, c, d = 0, f = 0, g = -1)
   vector=c(ap, bp, phi)
 }
 \references{
-http://mathworld.wolfram.com/Ellipse.html
+<http://mathworld.wolfram.com/Ellipse.html>
   
 }
 \author{

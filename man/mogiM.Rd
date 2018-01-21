@@ -1,6 +1,6 @@
 \name{mogiM}
 \alias{mogiM}
-\title{Mogi MOdel
+\title{Mogi Model
 }
 \description{Mogi model deformation returns the
   deformation from a point source

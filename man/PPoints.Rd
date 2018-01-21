@@ -25,7 +25,7 @@ Can click on here with a mixture to get
 \source{scanned figure
 
 }
-\references{Principles of Igneous and Metamorphic Petrology, A. R. Philpotts, 1990, Prentice Hall 
+\references{Principles of Igneous and Metamorphic Petrology, A. R. Philpotts, 1990, Prentice Hall <ISBN-13:978-0521880060>.
 
 }
 \examples{

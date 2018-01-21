@@ -30,7 +30,7 @@ List of 2
   Uplift, in Monograph:On the 1982-1984 bradyseismic crisis at
   Phlegraean Fields (Italy)
   eds: Barberi, F., Hill, D P., Innocenti, F., Luongo, G., Treuil, M.,
-  Bulletin Volcanologique, vol.47, no.2, special issue, pp.187-200, 1984.
+  Bulletin Volcanologique, vol.47, no.2, special issue, pp.187-200, 1984 <doi:https://doi.org/10.1007/BF01961548>.
   
 
 }

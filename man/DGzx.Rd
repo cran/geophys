@@ -28,7 +28,7 @@ DGzx(xs, zs, xv, zv, den)
 \value{vector of Delta-Gz and Delta-Gx at each station
 }
 \references{
-  Won and Bevis
+  Won and Bevis (1987) Computing the gravitational and magnetic anomalies due to a polygon: Algorithms and Fortran subroutines <doi:https://doi.org/10.1190/1.1442298>
 }
 \author{
 Jonathan M. Lees<jonathan.lees@unc.edu>

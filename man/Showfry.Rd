@@ -30,10 +30,9 @@ Showfry(RDAT, shear = matrix(c(1, 1.2, 0, 1)), rad = 75)
 \value{graphical side effects
 }
 \references{
-  Fry, N., (1979)
+Fry, N., (1979) <http://dx.doi.org/10.1016/0040-1951(79)90135-5>
 Random point distributions and strain measurement in rocks
 Tectonophysics, 60:89-105.
-
 }
 \author{
 Jonathan M. Lees<jonathan.lees@unc.edu>

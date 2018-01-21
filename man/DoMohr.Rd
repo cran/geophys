@@ -21,7 +21,7 @@ DoMohr(Stensor=diag(c(3,2,1)), axis=NULL)
 \references{
 
   W.D. Means,  Stress and Strain: Basic Concepts of Continuum Mechanics
-  for Geologists,  Springer; 1976. 4th ed., 339 p. ISBN-10: 0387075569.
+  for Geologists,  Springer; 1976. 4th ed., 339 p. (ISBN-10:0387075569).
   
 }
 \author{
